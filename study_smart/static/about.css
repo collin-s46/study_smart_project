@@ -1,0 +1,145 @@
+body {
+    background-color: #1e1e2f !important;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2e2e46;
+    color: white;
+    padding: 10px 40px;
+    
+}
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    font-family: 'Oxanium', serif;
+    font-size: 35px;
+    text-shadow: 0 0 13px #00bfff;
+    padding-left: 20px;
+}
+.navbar .logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar .logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+.navbar .dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.navbar .dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #373747;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+    list-style: none;
+    margin: 0;
+    border-radius: 5px;
+}
+
+.navbar .dropdown-menu li {
+    padding: 10px 20px;
+}
+
+.navbar .dropdown-menu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding-left: 7px;
+}
+.navbar .dropdown-menu li a:hover {
+    background-color: #555;
+    padding-left: 8px;
+    border-radius: 2px;
+}
+
+.navbar .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.navbar .menu-icon {
+    color: white;
+    font-size: 24px;
+    margin-left: 15px;
+    cursor: pointer;
+    font-style: normal;
+}
+
+.navbar .profile-icon {
+    color: white;
+    font-size: 20px;
+    margin-right: 10px;
+    
+}
+.logout-link {
+    color: #ff4444 !important; /* Red color */
+    transition: color 0.3s ease;
+}
+
+.logout-link:hover {
+    color: #ff6666 !important; /* Lighter red on hover */
+}
+
+
+
+
+.about-container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-section, .contact-section {
+    background-color: #29293d;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    
+}
+
+.about-section h1, .contact-section h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: white;
+    text-shadow: 0 0 10px #0099ffbd;
+    font-family: 'Oxanium', serif;
+    text-align: center;
+}
+.about-section p, .contact-section p {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.about-section .content, .contact-section .content {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ccc;
+}
+.about-section:hover, .contact-section:hover{
+    outline: none;
+    border-color: yellow; /* Yellow highlight */
+    box-shadow: 0 0 12px yellow;
+    transition: all 0.3s ease;
+}
+
+#insta, #email {
+    color: rgb(96, 120, 255);
+}
+
+#end {
+    font-family: 'Montserrat', serif;
+    text-align: center;
+    color: #ccc;
+}

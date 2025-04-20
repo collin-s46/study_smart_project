@@ -1,0 +1,249 @@
+/* General Styles */
+body {
+    margin: 0;
+    background-color: #1e1e2f !important; /* Dark background */
+    color: #f5f5f5;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2e2e46;
+    color: white;
+    padding: 10px 40px;
+    
+}
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    font-family: 'Oxanium', serif;
+    font-size: 35px;
+    text-shadow: 0 0 13px #00bfff;
+    padding-left: 20px;
+}
+.navbar .logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar .logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+.navbar .dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.navbar .dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #373747;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+    list-style: none;
+    margin: 0;
+    border-radius: 5px;
+}
+
+.navbar .dropdown-menu li {
+    padding: 10px 20px;
+}
+
+.navbar .dropdown-menu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding-left: 7px;
+}
+.navbar .dropdown-menu li a:hover {
+    background-color: #555;
+    padding-left: 8px;
+    border-radius: 2px;
+}
+
+.navbar .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.navbar .menu-icon {
+    color: white;
+    font-size: 24px;
+    margin-left: 15px;
+    cursor: pointer;
+    font-style: normal;
+}
+
+.navbar .profile-icon {
+    color: white;
+    font-size: 20px;
+    margin-right: 10px;
+    
+}
+.logout-link {
+    color: #ff4444 !important; /* Red color */
+    transition: color 0.3s ease;
+}
+
+.logout-link:hover {
+    color: #ff6666 !important; /* Lighter red on hover */
+}
+
+/* Settings Container */
+.settings-container {
+    width: 20%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #29293d;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.settings-container h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #007bff;
+    font-weight: 500;
+    font-family: 'Oxanium', serif;
+}
+h1, h2 {
+    text-align: center;
+}
+
+.settings-card {
+    margin-bottom: 20px;
+}
+
+.settings-card h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+.settings-container h3 {
+    padding-top: 20px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    padding: 15px;
+    font-family: 'Montserrat', serif;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 400;
+    color: #fff;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+input, select {
+    background-color: #222; /* Dark background */
+    color: #f5f5f5; /* White text for readability */
+    border: 1px solid #555; /* Subtle border */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+input::placeholder {
+    color: #f5f5f5; /* Light gray to match the select and date inputs */
+    opacity: 0.6; /* Ensures the color is visible */
+}
+
+select.hidden{
+    color: #f5f5f5; /* Light gray text to match placeholders */
+    cursor: pointer;
+    appearance: none;
+}
+
+input:hover, select:hover {
+    outline: none;
+    border-color: #ffcc00; /* Yellow highlight */
+    box-shadow: 0 0 8px #ffcc00;
+}
+
+
+.save-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    font-family: "Montserrat", serif;
+}
+
+.save-btn:hover {
+    background-color: #0056b3;
+}
+
+.completed-tasks {
+    margin-top: 40px;
+}
+
+.completed-tasks h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.completed-tasks p {
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+}
+
+.completed-tasks .task-count {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Alert Styles */
+.alert {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.alert-error {
+    background-color: rgba(255, 68, 68, 0.1);
+    border: 1px solid #ff4444;
+    color: #ff4444;
+}
+
+.alert-success {
+    background-color: rgba(0, 200, 81, 0.1);
+    border: 1px solid #00c851;
+    color: #00c851;
+}
+
+.alert-warning {
+    background-color: rgba(255, 187, 51, 0.1);
+    border: 1px solid #ffbb33;
+    color: #ffbb33;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Smart</title>
+    <link rel="icon" type="image/svg+xml" href="static/lightbulb.svg">
+
+
+    <link rel="stylesheet" href="static/welcome.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Montserrat:ital,wght@0,500;1,500&family=Oxanium:wght@700&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Oxanium:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="canvas"> </div>
+        <div id="top">
+            <h1 id="title">Study Smart<i class="bi bi-lightbulb" style="color:yellow"></i></h1> 
+
+            <h2>Welcome!</h2>
+        
+            <div id="btns">
+                <a href="/auth/signup"><button type="button" class="btn-primary">Sign Up</button></a>
+                <a href="/auth/login"><button type="button" class="btn-light">Log In</button></a>
+            </div>
+        </div>
+
+        <div class="description">
+            <br>
+            <div id="overview" class="box">
+                <h3>The Ultimate Productivity Tool for Students</h3>
+                    <p>Are you ready to revolutionize the way you study? Study Smart is the ultimate productivity app designed to help students maximize their time, stay organized, and crush deadlines like never before.</p>
+                    <p>Powered by cutting-edge AI technology, Study Smart analyzes your tasks and priorities to create a personalized study plan that adapts to your goals. No more guesswork, no more procrastination—just a smarter, stress-free path to success.</p>
+            </div>
+            <div id="list" class="box">
+                <h3>Here's what you can do with Study Smart: </h3>
+                <ul>
+                    <p><bold class="bold">🗂 Stay Organized</bold>: Use the customizable task checklist to track your assignments, projects, and deadlines effortlessly.</p>
+                    <p><bold class="bold">📅 Plan Ahead</bold>: Never miss a due date with an interactive calendar that keeps you informed of upcoming tasks and important events.</p>
+                    <p><bold class="bold">🤖 Smarter Scheduling</bold>: Let AI optimize your study sessions by prioritizing tasks based on urgency, difficulty, and importance—giving you more time to focus on what matters.</p>
+                </ul>
+            </div>
+            <div id="why" class="box">
+                <h3>Why Study Smart?</h3>
+                <p>Because your time is valuable. Whether you're juggling school, extracurriculars, or personal commitments, Study Smart ensures you stay on top of everything with precision and efficiency.</p>
+                <p>Study Smart is student made, optimized for students life</p>
+                <p>Get started today and experience the future of productivity!</p>
+            </div>
+
+            
+        </div>
+        <h3 id="footer">Study Smart: Smarter Planning. Smarter Results.</h3>
+        <p id="credits">Made By Collin Steele</p>
+    
+    <script>
+        // Adjust canvas resolution to match its display size
+       const canvas = document.getElementById('canvas');
+       const resizeCanvas = () => {
+       canvas.width = window.innerWidth;
+       canvas.height = window.innerHeight;
+       };
+
+       // Call initially and on window resize
+       resizeCanvas();
+       window.addEventListener('resize', resizeCanvas);
+   </script>
+</body>
+</html>

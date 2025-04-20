@@ -1,0 +1,813 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    background-color: #1e1e2f; /* Dark background */
+    color: #f5f5f5;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2e2e46;
+    color: white;
+    padding: 10px 40px;
+    
+}
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    font-family: 'Oxanium', serif;
+    font-size: 35px;
+    text-shadow: 0 0 13px #00bfff;
+    padding-left: 20px;
+}
+.navbar .logo a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar .logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.navbar .dropdown {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.navbar .dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #373747;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+    list-style: none;
+    margin: 0;
+    border-radius: 5px;
+}
+
+.navbar .dropdown-menu li {
+    padding: 10px 20px;
+}
+
+.navbar .dropdown-menu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding-left: 7px;
+}
+.navbar .dropdown-menu li a:hover {
+    background-color: #555;
+    padding-left: 8px;
+    border-radius: 2px;
+}
+
+.navbar .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.navbar .menu-icon {
+    color: white;
+    font-size: 24px;
+    margin-left: 15px;
+    cursor: pointer;
+    font-style: normal;
+}
+
+.navbar .profile-icon {
+    color: white;
+    font-size: 20px;
+    margin-right: 10px;
+    
+}
+.settings {
+    text-decoration: none;
+    color: inherit;
+}
+.bi bi-person-circle {
+    height: 40px;
+    width: 40px;
+}
+
+.navbar .profile-icon:hover {
+    color: #aaa;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    padding: 5px;
+    gap: 10px;
+    max-width: 70%;  /* Back to original width */
+    margin: 20px auto;
+    max-height: 85vh;
+}
+.left-side {
+    width: 48%;  /* Slightly wider */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 85vh;  /* Fixed height based on viewport */
+}
+
+
+/*calendar*/
+#calendar {
+    background-color: #29293d; /* Match the background of .add-task and .checklist */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    width: 52%;
+    max-height: 85vh; /*change to 62.5 for analytics update*/
+}
+
+/* White background for the grid portion */
+.fc .fc-view-harness {
+    background-color: rgba(255, 255, 255, 0.74);
+    /*border-radius: 8px;*/
+    padding: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: none;
+}
+/* Fixed height for each day's grid */
+.fc .fc-daygrid-day {
+    height: 100px; /* Fixed height for each day */
+}
+
+/* Scrollable events container */
+.fc .fc-daygrid-day-events {
+    overflow-y: auto; /* Add vertical scrollbar if needed */
+    max-height: 80px; /* Max height for events container */
+}
+.fc .fc-daygrid-day-events::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+/* Black grid lines */
+.fc .fc-daygrid-day-frame,
+.fc .fc-timegrid-axis,
+.fc .fc-timegrid-slot,
+.fc .fc-col-header-cell {
+    border-color: rgba(255, 255, 255, 0.1);
+    border: none;
+}
+
+/* Black text for all calendar elements */
+.fc .fc-daygrid-day-number,
+.fc .fc-col-header-cell-cushion,
+.fc .fc-timegrid-slot-label{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+
+/* Modern styling for the header toolbar */
+.fc .fc-toolbar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white; /* White text for the header */
+    margin: 0 10px; /* Add spacing around the title */
+    
+}
+
+/* Arrow buttons styling */
+.fc .fc-prev-button,
+.fc .fc-next-button {
+    background: none;
+    border: none;
+    color: white; /* White arrows */
+    font-size: 1.5rem;
+    padding: 0;
+    cursor: pointer;
+}
+
+.fc .fc-prev-button:hover,
+.fc .fc-next-button:hover,
+.fc .fc-prev-button:active,
+.fc .fc-next-button:active,
+.fc .fc-prev-button:focus,
+.fc .fc-next-button:focus {
+    color: #007BFF; /* Blue on hover, active, and focus */
+    background: none; /* Ensure no background */
+    border: none; /* Ensure no border */
+    box-shadow: none; /* Remove any shadow */
+}
+
+/* Remove default button styling */
+.fc .fc-button {
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+.fc .fc-event {
+    background-color: #007bff56; /* Blue background */
+    border: none; /* Remove border */
+    font-weight: 500;
+    border-radius: 2px; /* Rounded corners */
+    text-transform: capitalize;
+    font-size: 0.8em;
+    line-height: 1.2;
+    margin: 1px 0;
+    text-align: left;
+    
+}
+
+.fc .fc-event:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+.fc .fc-event-time {
+    display: none; /* Hide the time */
+}
+
+ /* Delete button styling */
+ .fc-event-delete {
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 0.8em;
+    color: white;
+    opacity: 1;
+    font-weight: 500;
+    text-align: right;
+}
+
+  /* Ensure the event title is left-aligned and the delete button is right-aligned */
+  .fc-event-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.fc-event-title {
+    flex-grow: 1; /* Allow the title to take up remaining space */
+}
+
+
+
+
+/* Checklist */
+.checklist, .add-task {
+    background-color: #29293d;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .checklist h2, .add-task h2 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: yellow; /* Accent color */
+  }
+
+  .checklist li p {
+    margin: 5px 0;
+  }
+/* Add Task Form */
+input, select {
+    background-color: #222; /* Dark background */
+    color: #f5f5f5; /* White text for readability */
+    border: 1px solid #555; /* Subtle border */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+input::placeholder {
+    color: #f5f5f5; /* Light gray to match the select and date inputs */
+    opacity: 1; /* Ensures the color is visible */
+}
+
+select.hidden{
+    color: #f5f5f5; /* Light gray text to match placeholders */
+    cursor: pointer;
+    appearance: none;
+}
+
+input:hover, select:hover {
+    outline: none;
+    border-color: #ffcc00; /* Yellow highlight */
+    box-shadow: 0 0 8px #ffcc00;
+}
+
+select {
+    cursor: pointer;
+    appearance: none; /* Removes default OS styling */
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+/*buttons*/
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+.submit-button {
+    width: 80%;
+    background-color: #007BFF; /* Blue */
+    color: white;
+    box-shadow: 2px 2px 12px rgba(34, 74, 255, 0.377);
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.trash-button {
+    background-color: #FF3B3B; /* Red */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20%; /* Small button */
+}
+
+.trash-button:hover {
+    background-color: #CC0000;
+}
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+
+    .left-side, .calendar {
+      width: 100%;
+    }
+  }
+
+.logout-link {
+    color: #ff4444 !important; /* Red color */
+    transition: color 0.3s ease;
+}
+
+.logout-link:hover {
+    color: #ff6666 !important; /* Lighter red on hover */
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 20px 0;
+    
+}
+
+.task-item {
+    background: #2e2e46;
+    border-radius: 6px;
+    padding: 8px 12px;  /* Reduced padding */
+    margin-bottom: 6px;  /* Reduced margin */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+    border: 1px solid #3e3e56;
+}
+
+.task-item:hover {
+    background: #3e3e56b0;
+    transform: translateX(3px);
+}
+
+.task-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;  /* Reduced gap */
+    flex-grow: 1;
+    padding-left: 5px;
+}
+
+.task-name {
+    font-size: 0.9em;  /* Slightly smaller font */
+    font-weight: 500;
+    min-width: 180px;  /* Reduced min-width */
+}
+
+.task-type {
+    font-size: 0.75em;  /* Smaller font */
+    padding: 2px 6px;  /* Reduced padding */
+    border-radius: 3px;
+    text-transform: uppercase;
+    min-width: 70px;  /* Reduced min-width */
+    text-align: center;
+}
+
+.task-type.major {
+    background: #ff4444;
+    color: white;
+}
+
+.task-type.minor {
+    background: #33b5e5;
+    color: white;
+}
+
+.task-type.formative {
+    background: #00C851;
+    color: white;
+}
+
+.due-date {
+    font-size: 0.8em;  /* Smaller font */
+    color: #a0a0a0;
+    display: flex;
+    align-items: center;
+    gap: 4px;  /* Reduced gap */
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: 15px;
+    position: relative; /* Ensure this is set */
+    z-index: 2; /* Ensure task actions are above other elements */
+}
+
+.complete-btn, .delete-btn {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+}
+
+.complete-btn {
+    color: #00C851;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 2px;
+    color: #ff4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3; /* Ensure this is set higher */
+}
+
+.delete-btn:hover {
+    background: rgba(255, 68, 68, 0.068);
+}
+
+.delete-btn i {
+    font-size: 1.1em;
+}
+
+.complete-btn:hover, .delete-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.refresh-btn {
+    margin-top: 20px;
+    background: #2e2e46;
+    border: 1px solid #3e3e56;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    z-index: 3; /* Ensure this is set higher */
+}
+
+.refresh-btn:hover {
+    background: #3e3e56b0;
+    transform: translateX(3px);
+}
+
+.no-tasks {
+    text-align: center;
+    color: #a0a0a0;
+    margin: 20px 0;
+}
+
+.completed {
+    opacity: 0.7;
+    background: #2a2a3a;
+}
+
+.completed .task-name {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.checkbox-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    z-index: 1;  /* Ensure it's above other elements */
+}
+
+.task-checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    z-index: 2;  /* Make sure it's above the checkmark */
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 4px;
+    z-index: 1;
+}
+.checkmark:hover {
+    background-color: #ffffff23;
+}
+
+.task-checkbox:checked ~ .checkmark {
+    background-color: #00C851;
+    border-color: #00C851;
+}
+
+.task-checkbox:checked ~ .checkmark:after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.task-item.completed .task-content {
+    position: relative;
+}
+
+.task-item.completed .task-content::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #666;
+    transform: translateY(-50%);
+}
+
+.task-item.completed {
+    opacity: 0.7;
+}
+
+.task-item.completed .task-name,
+.task-item.completed .task-type,
+.task-item.completed .due-date {
+    color: #666;
+    
+}
+.task-name {
+    text-transform: capitalize;
+}
+
+/* Left grid styling */
+.left-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    height: 100%;
+}
+
+/* Add event form styling */
+.add-event {
+    background: #2e2e46;
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #3e3e56;
+}
+
+.add-event h2 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+.add-event .form-group {
+    margin-bottom: 15px;
+}
+
+.add-event label {
+    display: block;
+    color: #ffffff;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.add-event input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #3e3e56;
+    border-radius: 4px;
+    background: #1e1e2e;
+    color: white;
+}
+
+.add-event input:focus {
+    outline: none;
+    border-color: #4a4a6a;
+}
+
+.add-event .button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.add-event .submit-btn,
+.add-event .clear-btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+}
+
+.add-event .submit-btn {
+    background: #4CAF50;
+    color: white;
+}
+
+.add-event .submit-btn:hover {
+    background: #45a049;
+}
+
+.add-event .clear-btn {
+    background: #f44336;
+    color: white;
+}
+
+.add-event .clear-btn:hover {
+    background: #da190b;
+}
+
+/* Adjust the height of the left grid to match the right side */
+.left-grid {
+    min-height: calc(100vh - 100px); /* Adjust this value based on your header/footer height */
+}
+
+.add-task {
+    background-color: #29293d;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.add-task h2 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: yellow;
+}
+
+/* Checklist container with fixed height and scrolling */
+.checklist {
+    background-color: #29293d;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    height: calc(100vh - 400px);  /* Adjust this value to fit 3 tasks */
+    overflow-y: auto;  /* Enable vertical scrolling */
+}
+
+/* Customize scrollbar */
+.checklist::-webkit-scrollbar {
+    width: 8px;
+}
+
+.checklist::-webkit-scrollbar-track {
+    background: #1e1e2f;
+    border-radius: 4px;
+}
+
+.checklist::-webkit-scrollbar-thumb {
+    background: #3e3e56;
+    border-radius: 4px;
+}
+
+.checklist::-webkit-scrollbar-thumb:hover {
+    background: #4a4a6a;
+}
+
+/* Form input layouts */
+.add-task form, .add-event form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-task form .input-row, .add-event form .input-row {
+    display: flex;
+    gap: 10px;
+}
+
+.add-task form input, .add-event form input,
+.add-task form select {
+    flex: 1;
+}
+
+.delete-btn, .refresh-btn {
+    position: relative; /* Ensure z-index works */
+    z-index: 10; /* Adjust as necessary */
+}
+
+.fc .fc-event {
+    background-color: #007BFF; /* Blue background */
+    border: none; /* Remove border */
+    color: white; /* White text */
+    border-radius: 4px; /* Rounded corners */
+    padding: 2px 4px; /* Padding for better spacing */
+}
+
+.fc .fc-event:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Remove the white border around the header */
+.fc .fc-header-toolbar {
+    border: none; /* Remove the header border */
+}
+
+/* Remove the white border around the calendar */
+.fc .fc-scrollgrid {
+    border: none; /* Remove the outer border */
+}
+
+/* Ensure numbers are visible in the ordered list */
+.checklist .numbered-list {
+    counter-reset: task-counter; /* Initialize the counter */
+    list-style: none; /* Remove default list markers */
+    padding-left: 0; /* Remove default padding */
+}
+
+.checklist .numbered-list .task-item {
+    counter-increment: task-counter; /* Increment the counter for each task */
+    position: relative; /* Position the number */
+    padding-left: 2.5em;
+}
+
+.checklist .numbered-list .task-item::before {
+    content: counter(task-counter) "."; /* Display the counter value */
+    position: absolute; /* Position the number */
+    left: 0; /* Align the number to the left */
+    font-weight: bold; /* Make the number bold */
+    color: #fff; /* Set the number color */
+    padding-left: 0.7em;
+}
+
+
+
+/* Cross out completed tasks */
+.task-item.completed .task-name {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+
+

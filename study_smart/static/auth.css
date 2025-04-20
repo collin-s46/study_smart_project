@@ -1,0 +1,227 @@
+:root {
+    --primary-color: #007bff;
+    --primary-dark: #0058b6;
+    --background-color: #1e1e2f;
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --error-color: #f44336;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.auth-box {
+    background-color: #29293d;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: var(--box-shadow);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.auth-logo {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+}
+
+.auth-header h1 {
+    margin: 0;
+    color: #eeeeee;
+    font-size: 2rem;
+}
+
+.sub-header {
+    margin: 0;
+    color: #c5c5c5;
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding-top: 1rem;
+    font-family: "Montserrat", serif;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #c5c5c5;
+}
+
+.form-control {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #222;
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+    box-shadow: 0 0 0px 1000px #222 inset;
+    -webkit-spellcheck: false;
+}
+
+/* This prevents the white background on autocomplete */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #222 inset !important;
+    -webkit-text-fill-color: #fff !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #ffcc00;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Added yellow glow effect */
+    background-color: #222;
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.auth-button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 550;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: var(--primary-dark);
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #868686;
+    font-weight: 400;
+}
+
+.auth-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 10px;
+    }
+    
+    .auth-box {
+        padding: 1.5rem;
+    }
+    
+    .auth-header h1 {
+        font-size: 1.5rem;
+    }
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.logo-icon {
+    height: 2em;
+    width: auto;
+}
+
+.logo-text {
+    font-family: 'Oxanium', cursive;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 157, 255, 0.5);
+    font-weight: 600;
+    transition: text-shadow 0.3s ease;
+    margin: 0;
+    font-size: 2em;
+}
+
+.logo-link {
+    text-decoration: none;
+}
+
+.logo-text:hover, .logo-icon:hover {
+    text-shadow: 0 0 15px rgba(0, 157, 255, 0.8);
+}
+
+.auth-header h1:not(.logo-text) {
+    margin: 0;
+    color: #eeeeee;
+    font-size: 1.4rem;
+}
+
+/* Add this to remove the red squiggly lines */
+input[type="email"],
+input[type="text"],
+input[type="password"] {
+    -webkit-spellcheck: false;
+}
+
+.alert {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.alert-error {
+    background-color: rgba(255, 68, 68, 0.1);
+    border: 1px solid #ff4444;
+    color: #ff4444;
+}
+
+.alert-success {
+    background-color: rgba(0, 200, 81, 0.1);
+    border: 1px solid #00c851;
+    color: #00c851;
+}
+
+.alert-warning {
+    background-color: rgba(255, 187, 51, 0.1);
+    border: 1px solid #ffbb33;
+    color: #ffbb33;
+}

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Smart</title>
+    <link rel="icon" type="image/svg+xml" href="static/lightbulb.svg">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Anta&family=Montserrat:ital,wght@0,500;1,500&family=Oxanium:wght@700&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/dashboard.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <nav class="navbar">
+    <div class="logo">
+        <a href="/">
+          <span>Study Smart</span>
+        <img src="static/lightbulb.svg" alt="lightbulb">
+        </a>
+    </div>
+
+    <div class="right-section">
+      
+        <div class="dropdown">
+            <i class="menu-icon">☰</i>
+            <ul class="dropdown-menu">
+                <li><a href="/" style="font-weight: 550;">Home</a></li>
+                <li><a href="/settings">Settings</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="{{ url_for('auth.logout') }}" class="logout-link">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+    <div class="container">
+    <div class="left-side">
+      <div class="checklist">
+        <h2>Checklist</h2>
+        {% if tasks %}
+            <ol class="task-list numbered-list">
+                
+                {% for task in tasks %}
+                    <li class="task-item {% if task.completed %}completed{% endif %}" data-task-id="{{ task.id }}">
+                        <div class="task-content">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" class="task-checkbox" {% if task.completed %}checked{% endif %} onclick="handleCheckboxClick(this)">
+                                <span class="checkmark"></span>
+                            </div>
+                            <span class="task-name">{{ task.name }}</span>
+                            <span class="task-type {{ task.type.lower() }}">{{ task.type }}</span>
+                            <span class="due-date">
+                                {{ task.due_date.strftime('%b %d, %Y') }}
+                            </span>
+                        </div>
+                        <div class="task-actions">
+                            <button class="delete-btn" data-task-id="{{ task.id }}" title="Delete task">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </div>
+                    </li>
+                {% endfor %}
+                
+                </ol>
+        {% else %}
+            <p class="no-tasks">No tasks yet. Add one below!</p>
+        {% endif %}
+        <button class="refresh-btn">
+            <i class="bi bi-arrow-clockwise"></i>
+            Refresh
+        </button>
+      </div>
+      <div class="add-task">
+        <h2>Add Task</h2>
+        <form action="{{ url_for('views.add_task') }}" method="POST">
+            <div class="input-row">
+                <input type="text" name="name" placeholder="Task Name" required>
+                <select name="type" required>
+                    <option value="" disabled selected>Task Type</option>
+                    <option value="major">Major</option>
+                    <option value="minor">Minor</option>
+                    <option value="formative">Formative</option>
+                </select>
+            </div>
+            <div class="input-row">
+                <input type="date" name="due_date" required>
+                <select name="difficulty" required>
+                    <option value="" disabled selected>Difficulty</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            <div class="form-buttons">
+                <button type="submit" class="submit-button">Add Task</button>
+                <button type="reset" class="trash-button">
+                    <i class="bi bi-trash-fill"></i>
+                </button>
+            </div>
+        </form>
+      </div>
+      <div class="add-task">
+        <h2>Add Event</h2>
+        <form action="{{ url_for('views.add_event') }}" method="POST">
+            <div class="input-row">
+                <input type="text" name="title" placeholder="Event Title" required>
+                <input type="date" name="date" required>
+            </div>
+            <div class="form-buttons">
+                <button type="submit" class="submit-button">Add Event</button>
+                <button type="reset" class="trash-button">
+                    <i class="bi bi-trash-fill"></i>
+                </button>
+            </div>
+        </form>
+      </div>
+    </div>
+    <div id="calendar">
+      
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+<script src="{{ url_for('static', filename='dash.js') }}"></script>
+
+<!-- Initialize FullCalendar -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Initializing FullCalendar...'); // Debug: Check if this logs
+        const calendarEl = document.getElementById('calendar');
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth', // Default view
+            headerToolbar: {
+                left: 'prev',
+                center: 'title',
+                right: 'next'
+            },
+            events: function(fetchInfo, successCallback, failureCallback) {
+                console.log('Fetching events and tasks...'); // Debug: Check if this logs
+
+                // Fetch events
+                fetch('/get_events')
+                    .then(response => response.json())
+                    .then(events => {
+                        console.log('Events fetched:', events); // Debug: Check the fetched events
+
+                        // Fetch tasks
+                        fetch('/get_tasks')
+                            .then(response => response.json())
+                            .then(tasks => {
+                                console.log('Tasks fetched:', tasks); // Debug: Check the fetched tasks
+
+                                // Combine events and tasks
+                                const combinedData = events.concat(tasks);
+                                console.log('Combined data:', combinedData); // Debug: Check the combined data
+
+                                // Pass the combined data to FullCalendar
+                                successCallback(combinedData);
+                            })
+                            .catch(error => {
+                                console.error('Error fetching tasks:', error);
+                                failureCallback(error);
+                            });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching events:', error);
+                        failureCallback(error);
+                    });
+            },
+            eventDisplay: 'block', // Display events as blocks
+            eventContent: function(info) {
+                // Add a delete button to the event
+                const deleteButton = document.createElement('span');
+                deleteButton.className = 'fc-event-delete';
+                deleteButton.innerHTML = 'X';
+                deleteButton.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent event click from firing
+                    const itemId = info.event.id;
+                    const isEvent = info.event.extendedProps.isEvent; // Check if it's an event or task
+
+                    if (confirm('Are you sure you want to delete this item?')) {
+                        const deleteUrl = isEvent ? `/delete_event/${itemId}` : `/delete_task/${itemId}`;
+                        fetch(deleteUrl, {
+                            method: 'DELETE',
+                        }).then(response => {
+                            if (response.ok) {
+                                info.event.remove(); // Remove the item from the calendar
+                            } else {
+                                alert('Failed to delete item.');
+                            }
+                        }).catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
+                });
+
+                const eventContent = document.createElement('div');
+                eventContent.className = 'fc-event-content';
+
+                // Apply strikethrough and reduced opacity for completed tasks
+                if (!info.event.extendedProps.isEvent && info.event.extendedProps.completed) {
+                    eventContent.style.opacity = '0.6'; // Reduce opacity
+                    eventContent.style.textDecoration = 'line-through'; // Add strikethrough
+                }
+
+                const eventTitle = document.createElement('span');
+                eventTitle.className = 'fc-event-title';
+                eventTitle.innerHTML = info.event.title;
+                eventContent.appendChild(eventTitle);
+                eventContent.appendChild(deleteButton);
+
+                return { domNodes: [eventContent] };
+            },
+            eventClick: function(info) {
+                alert('Item: ' + info.event.title + '\nDate: ' + info.event.start.toLocaleDateString());
+            }
+        });
+        calendar.render();
+    });
+</script>
+
+<script>
+    function handleCheckboxClick(checkbox) {
+        const taskId = checkbox.closest('.task-item').dataset.taskId;
+        const isCompleted = checkbox.checked;
+
+        fetch(`/complete_task/${taskId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ completed: isCompleted }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const taskItem = checkbox.closest('.task-item');
+                if (data.completed) {
+                    taskItem.classList.add('completed');
+                } else {
+                    taskItem.classList.remove('completed');
+                }
+            } else {
+                alert('Failed to update task status.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+</script>
+</body>
+</html>

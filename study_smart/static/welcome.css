@@ -1,0 +1,232 @@
+:root {
+    --clr-1: #00aeff;
+    --clr-2: yellow;   
+    --clr-3: #000000;
+    --clr-4: #4c00ff;
+    --clr-5: #fff;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background: rgb(2,0,36);
+  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(127,127,255,1) 50%, rgba(255,255,255,1) 100%);
+  background-attachment: fixed;
+}
+body {
+    min-height: 100vh;
+}
+h1{
+    display: flex;
+    justify-content: center;
+    padding: 17px;
+    font-size: 120px;
+    font-family: "Oxanium", serif;
+    color: #ffff;
+    animation: float 4s ease-in infinite;
+    text-shadow: 0 0 13px #00bfff;
+    margin-bottom: 20px;
+}
+\F46B {
+    color: yellow;
+}
+  
+h2{
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: "Oxanium", serif;
+    font-size: 40px;
+    text-shadow: 1px 1px 5px #000000;
+
+}
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+/*boxes*/
+
+.box{
+    background: white;
+    width: 33%;
+    padding: 1.6em;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.356);
+    h3 {
+        text-align: center;
+        font-family: "Oxanium", serif;
+        color: #02005e;
+    }
+    p {
+        font-family: "Montserrat", serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        word-spacing: 3px;
+        font-size: 15px;
+    }
+}
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+.box::after, card::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: conic-gradient(from var(--angle), transparent 20%, blue);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 4px;
+    border-radius: 15px;
+    animation: 7s spin linear infinite;
+}
+.box::before {
+    filter: blur(20em);
+    opacity: 0.6;
+}
+.description {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: 15px;
+    .bold {
+        font-weight: 600;
+    }
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+#list::before, #list::after {
+    background: conic-gradient(from var(--angle), transparent 70%, rgb(255, 251, 0));
+}
+
+#footer {
+    margin: 10px;
+    font-family: "Oxanium", serif;
+    font-size: 30px;
+    text-shadow: 2px 2px 3px #ffffff;
+    color: rgb(0, 2, 134);
+    text-align: center;
+}
+#credits {
+    
+    font-family: "Montserrat", serif;
+    font-size: 15px;
+    color: black;
+    text-align: center;
+    font-weight: 500;
+}
+
+/*buttons */
+.btn-light {
+    display: inline-block;
+    font-weight: 400;
+    color: #3b3b3b; /* White text */
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #ffffff; /* Bootstrap primary blue */
+    border: 1px solid #ffffff;
+    padding: 0.375rem 0.75rem; /* Padding: 6px top/bottom, 12px left/right */
+    font-size: 1rem; /* Default font size */
+    line-height: 1.5; /* Default line height */
+    border-radius: 5px; /* Rounded corners */
+    transition: transform .7s ease;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.555);
+    margin: 15px;
+}
+.btn-light:hover {
+    color: #3b3b3b; /* Keeps text white on hover */
+    background-color: #e0e0e0; /* Darker blue for hover */
+    border-color: #e0e0e0;
+    box-shadow: .5px .5px 1px;
+    transform: scale(1.05);
+}
+.btn-light:focus, .btn-primary:active {
+    color: #3b3b3b;
+    background-color: #aaaaaa; /* Even darker blue for focus/active */
+    border-color: #aaaaaa;
+    box-shadow: 0px 0px 4px rgba(38, 143, 255, 0.5); /* Focus shadow */
+}
+.btn-light:disabled {
+    color: #3b3b3b;
+    background-color: #ffffff;
+    border-color: #0057b4;
+    opacity: 0.65; /* Makes it look disabled */
+    pointer-events: none; /* Prevents interaction */
+}
+
+
+.btn-primary {
+    scale: 1.075;
+    display: inline-block;
+    font-weight: 400;
+    color: #fff; /* White text */
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #007bff; /* Bootstrap primary blue */
+    border: 1px solid #006ce0;
+    padding: 0.375rem 0.75rem; /* Padding: 6px top/bottom, 12px left/right */
+    font-size: 1rem; /* Default font size */
+    line-height: 1.5; /* Default line height */
+    border-radius: 5px; /* Rounded corners */
+    transition: transform .7s ease;
+    box-shadow: 0 0 25px yellow;
+    margin: 15px;
+}
+.btn-primary:hover {
+    color: #fff; /* Keeps text white on hover */
+    background-color: #006bdd; /* Darker blue for hover */
+    border-color: #0056b3;
+    box-shadow: 0 0 15px yellow;
+    transform: scale(1.05);
+}
+.btn-primary:focus, .btn-primary:active {
+    color: #fff;
+    background-color: #004085; /* Even darker blue for focus/active */
+    border-color: #004085;
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5); /* Focus shadow */
+}
+.btn-primary:disabled {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    opacity: 0.65; /* Makes it look disabled */
+    pointer-events: none; /* Prevents interaction */
+}
+
+#btns {
+    display: flex;
+    justify-content: center;
+    scale: 1.2;
+}
