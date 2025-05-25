@@ -5,5 +5,4 @@ from study_smart.models import db
 app = create_app()
 migrate = Migrate(app, db)
 
-if __name__ == "__main__":
-    app.run(debug=False)
+#gunicorn handles app.run()
