@@ -5,7 +5,11 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from werkzeug.middleware.proxy_fix import ProxyFix
 import os
+from dotenv import load_dotenv
 
+# Load environment variables from .env file in the project root
+dotenv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env')
+load_dotenv(dotenv_path)
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -15,7 +19,7 @@ login_manager = LoginManager()
 def create_app():
     app = Flask(__name__, template_folder='templates', static_folder='static')
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///study_smart.db'  # SQLite database
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SUPABASE_DB_URL') #supabase db url
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
