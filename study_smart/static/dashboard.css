@@ -125,62 +125,50 @@ body {
 
 /*calendar*/
 #calendar {
-    background-color: #29293d; /* Match the background of .add-task and .checklist */
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    background-color: #23243a; /* Slightly lighter, deep blue */
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
     padding: 20px;
     width: 52%;
-    max-height: 85vh; /*change to 62.5 for analytics update*/
+    max-height: 85vh;
 }
 
-/* White background for the grid portion */
+/* Calendar grid background */
 .fc .fc-view-harness {
-    background-color: rgba(255, 255, 255, 0.74);
-    /*border-radius: 8px;*/
+    background: #2d2f48; /* Muted indigo */
     padding: 10px;
     border-radius: 10px;
     overflow: hidden;
     border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
-/* Fixed height for each day's grid */
+
+/* Each day's grid */
 .fc .fc-daygrid-day {
-    height: 100px; /* Fixed height for each day */
+    background: #23243a; /* Matches calendar container */
+    height: 100px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+.fc .fc-daygrid-day:hover {
+    background: #35365a; /* Slight highlight on hover */
 }
 
-/* Scrollable events container */
-.fc .fc-daygrid-day-events {
-    overflow-y: auto; /* Add vertical scrollbar if needed */
-    max-height: 80px; /* Max height for events container */
-}
-.fc .fc-daygrid-day-events::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
-}
-
-/* Black grid lines */
-.fc .fc-daygrid-day-frame,
-.fc .fc-timegrid-axis,
-.fc .fc-timegrid-slot,
-.fc .fc-col-header-cell {
-    border-color: rgba(255, 255, 255, 0.1);
-    border: none;
-}
-
-/* Black text for all calendar elements */
+/* Day numbers and header */
 .fc .fc-daygrid-day-number,
 .fc .fc-col-header-cell-cushion,
-.fc .fc-timegrid-slot-label{
-    color: rgb(0, 0, 0);
+.fc .fc-timegrid-slot-label {
+    color: #f8f8fa;
+    font-weight: 600;
     text-decoration: none;
 }
 
-
-/* Modern styling for the header toolbar */
+/* Header toolbar */
 .fc .fc-toolbar-title {
     font-size: 1.5rem;
     font-weight: bold;
-    color: white; /* White text for the header */
-    margin: 0 10px; /* Add spacing around the title */
-    
+    color: #ffe066; /* Soft yellow accent */
+    margin: 0 10px;
 }
 
 /* Arrow buttons styling */
@@ -188,22 +176,97 @@ body {
 .fc .fc-next-button {
     background: none;
     border: none;
-    color: white; /* White arrows */
+    color: #ffe066;
     font-size: 1.5rem;
     padding: 0;
     cursor: pointer;
 }
-
 .fc .fc-prev-button:hover,
-.fc .fc-next-button:hover,
-.fc .fc-prev-button:active,
-.fc .fc-next-button:active,
-.fc .fc-prev-button:focus,
-.fc .fc-next-button:focus {
-    color: #007BFF; /* Blue on hover, active, and focus */
-    background: none; /* Ensure no background */
-    border: none; /* Ensure no border */
-    box-shadow: none; /* Remove any shadow */
+.fc .fc-next-button:hover {
+    color: #fffbe7;
+}
+
+/* Calendar events */
+.fc .fc-event {
+    background-color: #4f8cff; /* Soft blue accent */
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-weight: 500;
+    font-size: 0.85em;
+    box-shadow: 0 1px 4px rgba(79,140,255,0.12);
+}
+.fc .fc-event:hover {
+    background-color: #356ac3;
+}
+
+/* Hide event time if desired */
+.fc .fc-event-time {
+    display: none;
+}
+
+/* Scrollbar for events */
+.fc .fc-daygrid-day-events {
+    overflow-y: auto;
+    max-height: 80px;
+}
+.fc .fc-daygrid-day-events::-webkit-scrollbar {
+    display: none;
+}
+
+/* Subtle grid lines */
+.fc .fc-daygrid-day-frame,
+.fc .fc-timegrid-axis,
+.fc .fc-timegrid-slot,
+.fc .fc-col-header-cell {
+    border-color: rgba(255, 255, 255, 0.06) !important;
+    border: none !important;
+}
+
+/* General styles */
+.fc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #e0e0e0;
+}
+
+.fc .fc-toolbar {
+    background: #2e2e46;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.fc .fc-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.fc .fc-button:hover {
+    background: #0056b3;
+}
+
+.fc .fc-event {
+    background-color: #007bff56; /* Blue background */
+    border: none; /* Remove border */
+    color: white; /* White text */
+    border-radius: 4px; /* Rounded corners */
+    padding: 2px 4px; /* Padding for better spacing */
+    font-weight: 500;
+    font-size: 0.85em;
+    box-shadow: 0 1px 4px rgba(79,140,255,0.12);
+}
+
+.fc .fc-event:hover {
+    background-color: #0056b3; /* Darker blue on hover */
 }
 
 /* Remove default button styling */
@@ -269,7 +332,7 @@ body {
   .checklist h2, .add-task h2 {
     margin-bottom: 15px;
     font-size: 1.5rem;
-    color: yellow; /* Accent color */
+    color: #ffe066; /* Accent color */
   }
 
   .checklist li p {
@@ -703,7 +766,7 @@ button {
 .add-task h2 {
     margin-bottom: 10px;
     font-size: 1.5rem;
-    color: yellow;
+    color: #ffe066;
 }
 
 /* Checklist container with fixed height and scrolling */
@@ -763,6 +826,9 @@ button {
     color: white; /* White text */
     border-radius: 4px; /* Rounded corners */
     padding: 2px 4px; /* Padding for better spacing */
+    font-weight: 500;
+    font-size: 0.85em;
+    box-shadow: 0 1px 4px rgba(79,140,255,0.12);
 }
 
 .fc .fc-event:hover {
@@ -777,6 +843,24 @@ button {
 /* Remove the white border around the calendar */
 .fc .fc-scrollgrid {
     border: none; /* Remove the outer border */
+}
+
+/* Remove all grid borders in FullCalendar */
+.fc .fc-scrollgrid,
+.fc .fc-scrollgrid-section,
+.fc .fc-scrollgrid-sync-table,
+.fc .fc-scrollgrid-sync-inner,
+.fc .fc-daygrid-day,
+.fc .fc-daygrid-day-frame,
+.fc .fc-col-header-cell,
+.fc .fc-timegrid-slot,
+.fc .fc-timegrid-axis,
+.fc .fc-scrollgrid-shrink,
+.fc .fc-scrollgrid-liquid,
+.fc .fc-scrollgrid-section > td,
+.fc .fc-scrollgrid-section > th {
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    box-shadow: none !important;
 }
 
 /* Ensure numbers are visible in the ordered list */
